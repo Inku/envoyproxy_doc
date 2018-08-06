@@ -2,9 +2,9 @@
 
 本节将为您提供一个非常简单的配置，并提供一些示例配置。
 
-Envoy目前不提供单独的预构建二进制文件，但是提供了Docker镜像，这是开始使用Envoy的最快方法。如果您希望在Docker容器之外使用Envoy，您需要[构建它](//TODO)。
+Envoy目前不提供单独的预构建二进制文件，但是提供了Docker镜像，这是开始使用Envoy的最快方法。如果您希望在Docker容器之外使用Envoy，您需要[构建它](TODO:)。
 
-这些示例使用v2 Envoy API，但仅使用了最有效切需求最简单的静态配置功能。对于更复杂的要求你需要[动态配置](//TODO)的支持。
+这些示例使用v2 Envoy API，但仅使用了最有效切需求最简单的静态配置功能。对于更复杂的要求你需要[动态配置](TODO:)的支持。
 
 ## 快速入门运行简单示例
 
@@ -30,7 +30,7 @@ $ curl -v localhost:10000
 
 可以使用在命令行中作为参数传入的单个YAML文件来配置Envoy。
 
-配置管理服务器需要[admin message](//TODO)。使用*address*字段指定侦听地址，在本例中是0.0.0.0:9901。
+配置管理服务器需要[admin message](TODO:)。使用*address*字段指定侦听地址，在本例中是0.0.0.0:9901。
 
 ```
 admin:
@@ -39,13 +39,13 @@ admin:
     socket_address: { address: 0.0.0.0, port_value: 9901 }
 ```
 
-[static_resources](//TODO)包含了Envoy启动时所需要的所有静态配置，而不是在Envoy运行时进行动态资源配置。[v2 API概述](//TODO)描述了这一点。
+[static_resources](TODO:)包含了Envoy启动时所需要的所有静态配置，而不是在Envoy运行时进行动态资源配置。[v2 API概述](TODO:)描述了这一点。
 
 ```
 static_resources:
 ```
 
-以下是[listeners](//TODO)示例:
+以下是[listeners](TODO:)示例:
 
 ```
 listeners:
@@ -70,7 +70,7 @@ listeners:
         - name: envoy.router
 ```
 
-以下是[clusters](//TODO)示例:
+以下是[clusters](TODO:)示例:
 
 ```
 clusters:
@@ -85,7 +85,7 @@ clusters:
 ```
 
 ## 使用Envoy Docker镜像
-使用您本地定义的envoy.yaml(如上所述)创建一个简易的Dockerfile来启动Envoy.您可以参考[命令行选项](//TODO)
+使用您本地定义的envoy.yaml(如上所述)创建一个简易的Dockerfile来启动Envoy.您可以参考[命令行选项](TODO:)
 
 ```
 FROM envoyproxy/envoy:latest
@@ -116,14 +116,14 @@ $ curl -v localhost:10000
 
 我们使用Docker Compose创建了许多沙箱，它们配置了不同的环境来测试Envoy的功能并显示样本配置。 我们会随着大家的兴趣来增加更多展示不同功能的沙箱。 目前以下沙箱可供使用：
 
-* [Front Proxy](//TODO)
-* [Zipkin Tracing](//TODO)
-* [Jaeger Tracing](//TODO)
-* [Jaeger Native Tracing](//TODO)
-* [gRPC Bridge](//TODO)
+* [Front Proxy](TODO:)
+* [Zipkin Tracing](TODO:)
+* [Jaeger Tracing](TODO:)
+* [Jaeger Native Tracing](TODO:)
+* [gRPC Bridge](TODO:)
 
 ## 其他用例
 
 除了代理本身，Envoy还捆绑为几个针对特定用例的开源发行版的一部分。
 
-* [Envoy作为Kubernetes的API网关](//TODO)
+* [Envoy作为Kubernetes的API网关](TODO:)

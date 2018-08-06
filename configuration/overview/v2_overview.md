@@ -12,7 +12,7 @@ Envoy v2 APIs在[数据层API](https://github.com/envoyproxy/data-plane-api/blob
 
 ## 引导配置
 
-要使用v2 API，必须提供引导配置文件。这提供了静态服务器配置，并配置Envoy以在[需要时访问动态配置](//TODO)。与v1 JSON/YAML配置一样，这是通过`-c`参数在命令行上提供，即：
+要使用v2 API，必须提供引导配置文件。这提供了静态服务器配置，并配置Envoy以在[需要时访问动态配置](TODO:)。与v1 JSON/YAML配置一样，这是通过`-c`参数在命令行上提供，即：
 
 ```
 ./envoy -c <path to config>.{json,yaml,pb,pb_text}
@@ -20,7 +20,7 @@ Envoy v2 APIs在[数据层API](https://github.com/envoyproxy/data-plane-api/blob
 
 扩展名反映了基础v2配置表达。
 
-[Bootstrap](//TODO)消息是配置的根。[Bootstrap](//TODO)消息中的一个关键概念是静态和动态资源之间的区别。诸如[Listener](//TODO)或[Cluster](//TODO)之类的资源可以静态地配置在[static_resources](//TODO)中，其他具有xDS服务，例如[LDS](//TODO)或[CDS](//TODO)需要配置在[dynamic_resources](//TODO)中。
+[Bootstrap](TODO:)消息是配置的根。[Bootstrap](TODO:)消息中的一个关键概念是静态和动态资源之间的区别。诸如[Listener](TODO:)或[Cluster](TODO:)之类的资源可以静态地配置在[static_resources](TODO:)中，其他具有xDS服务，例如[LDS](TODO:)或[CDS](TODO:)需要配置在[dynamic_resources](TODO:)中。
 
 ## 示例
 
@@ -74,7 +74,7 @@ static_resources:
 
 ### 静态配置配合动态EDS
 
-基于上述配置，通过在127.0.0.3:5678上监听的[EDS](//TODO) gRPC管理服务器实现[动态终端发现](//TODO)的配置如下:
+基于上述配置，通过在127.0.0.3:5678上监听的[EDS](TODO:) gRPC管理服务器实现[动态终端发现](TODO:)的配置如下:
 
 ```
 admin:
@@ -132,7 +132,7 @@ static_resources:
 
 请注意，上述*xds_cluster*被定义为将Envoy指向管理服务器。 即使在完全动态的配置中，也需要定义一些静态资源以将Envoy指向其xDS管理服务器。
 
-在上面的示例中，EDS管理服务器可以返回[DiscoveryResponse](//TODO)的原型编码：
+在上面的示例中，EDS管理服务器可以返回[DiscoveryResponse](TODO:)的原型编码：
 
 ```
 version_info: "0"
@@ -148,7 +148,7 @@ resources:
             port_value: 1234
 ```
 
-上述版本控制和type URL scheme在[流式gRPC订阅协议](//TODO)文档中有更详细的说明。
+上述版本控制和type URL scheme在[流式gRPC订阅协议](TODO:)文档中有更详细的说明。
 
 ### 动态配置
 
@@ -272,7 +272,7 @@ resources:
 
 ## 从v1配置升级
 
-虽然可以编写新的v2引导程序JSON/YAML，但将现有的[v1 JSON/YAML配置](//TODO)升级到v2是更方便的。要执行此操作（在Envoy源代码树中），您可以运行：
+虽然可以编写新的v2引导程序JSON/YAML，但将现有的[v1 JSON/YAML配置](TODO:)升级到v2是更方便的。要执行此操作（在Envoy源代码树中），您可以运行：
 
 ```
 bazel run //tools:v1_to_bootstrap <path to v1 JSON/YAML configuration file>
@@ -280,7 +280,7 @@ bazel run //tools:v1_to_bootstrap <path to v1 JSON/YAML configuration file>
 
 ## 管理服务器
 
-v2 xDS管理服务器将根据gRPC和/或REST服务的要求实现以下终端。在流式gRPC和REST-JSON情况下，可以根据[xDS协议](https://github.com/envoyproxy/data-plane-api/blob/master/XDS_PROTOCOL.md)发送[DiscoveryRequest]()并接收[DiscoveryResponse](//TODO)。
+v2 xDS管理服务器将根据gRPC和/或REST服务的要求实现以下终端。在流式gRPC和REST-JSON情况下，可以根据[xDS协议](https://github.com/envoyproxy/data-plane-api/blob/master/XDS_PROTOCOL.md)发送[DiscoveryRequest]()并接收[DiscoveryResponse](TODO:)。
 
 ### gRPC流式传输终端
 
@@ -447,11 +447,11 @@ lds_config: {ads: {}}
 
 Envoy debug日志会记录每次尝试连接时都无法与管理服务器建立连接详情。
 
-[upstream_cx_connect_fail](//TODO)是当前集群指向管理服务器的集群及统计服务器。它提供了监控此行为的信号。
+[upstream_cx_connect_fail](TODO:)是当前集群指向管理服务器的集群及统计服务器。它提供了监控此行为的信号。
 
 ## 状态
 
-除非另有说明，否则[v2 API参考](//TODO)中描述的所有功能都可以被实现。在v2 API参考和[v2 API仓库](//TODO)中，除非它们被标记为*草稿* 或*实验* ，否则所有原型状态都是*冻结* 。在这里，*冻结* 意味着我们不可以破坏线性格式兼容性。
+除非另有说明，否则[v2 API参考](TODO:)中描述的所有功能都可以被实现。在v2 API参考和[v2 API仓库](TODO:)中，除非它们被标记为*草稿* 或*实验* ，否则所有原型状态都是*冻结* 。在这里，*冻结* 意味着我们不可以破坏线性格式兼容性。
 
 *冻结* 的原型可以通过[向下兼容](https://developers.google.com/protocol-buffers/docs/overview#how-do-they-work)的方式来进行扩展，例如添加新字段。上述protos中的字段可能会在不再需要其相关功能时进行废弃或[改变变更策略](https://github.com/envoyproxy/envoy/blob/master//CONTRIBUTING.md#breaking-change-policy)。虽然冻结的API保留了其线性格式兼容性，但我们保留更改原型名称空间，文件位置和嵌套关系的权利，这可能会导致代码更改。我们的目标是尽量减少客户流失。
 
