@@ -12,7 +12,7 @@ Envoy目前不提供单独的预构建二进制文件，但是提供了Docker镜
 
 [configs/google_com_proxy.v2.yaml](https://github.com/envoyproxy/envoy/blob/master/configs/google_com_proxy.v2.yaml)中提供了一个最小化Envoy配置，可用于验证基本的纯HTTP代理。但这并不代表一个现实的Enovy部署实例：
 
-```
+```bash
 $ docker pull envoyproxy/envoy:v1.7.0
 $ docker run --rm -d -p 10000:10000 envoyproxy/envoy:v1.7.0
 $ curl -v localhost:10000
@@ -32,7 +32,7 @@ $ curl -v localhost:10000
 
 配置管理服务器需要[admin message](TODO:)。使用*address*字段指定侦听地址，在本例中是0.0.0.0:9901。
 
-```
+```yaml
 admin:
   access_log_path: /tmp/admin_access.log
   address:
@@ -41,13 +41,13 @@ admin:
 
 [static_resources](TODO:)包含了Envoy启动时所需要的所有静态配置，而不是在Envoy运行时进行动态资源配置。[v2 API概述](TODO:)描述了这一点。
 
-```
+```yaml
 static_resources:
 ```
 
 以下是[listeners](TODO:)示例:
 
-```
+```yaml
 listeners:
 - name: listener_0
   address:
@@ -72,7 +72,7 @@ listeners:
 
 以下是[clusters](TODO:)示例:
 
-```
+```yaml
 clusters:
 - name: service_google
   connect_timeout: 0.25s
@@ -87,26 +87,26 @@ clusters:
 ## 使用Envoy Docker镜像
 使用您本地定义的envoy.yaml(如上所述)创建一个简易的Dockerfile来启动Envoy.您可以参考[命令行选项](TODO:)
 
-```
+```docker
 FROM envoyproxy/envoy:latest
 COPY envoy.yaml /etc/envoy/envoy.yaml
 ```
 
 使用以下命令构建运行您的配置的Docker镜像:
 
-```
+```bash
 $ docker build -t envoy:v1 .
 ```
 
 之后你可以使用以下命令来启动:
 
-```
+```bash
 $ docker run -d --name envoy -p 9901:9901 -p 10000:10000 envoy:v1
 ```
 
 最后启动测试:
 
-```
+```bash
 $ curl -v localhost:10000
 ```
 

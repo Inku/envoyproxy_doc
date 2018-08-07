@@ -9,7 +9,7 @@
 |downstream_cx_total|计数器|总连接数|
 |downstream_cx_destroy|计数器|总销毁链接输|
 |downstream_cx_active|计量器|当前活跃连接数|
-|downstream_cx_length_ms|柱状图|链接时长（毫秒）|
+|downstream_cx_length_ms|直方图|链接时长（毫秒）|
 |no_filter_chain_match|计数器|不匹配任何过滤器链的链接总数|
 |ssl.connection_error|计数器|总TLS连接错误数，不包括证书验证失败|
 |ssl.handshake|计数器|成功完成TLS链接握手总数|
@@ -19,7 +19,7 @@
 |ssl.fail_verify_error|计数器|CA验证失败的TLS连接总数|
 |ssl.fail_verify_san|计数器|SAN验证失败的TLS连接总数|
 |ssl.fail_verify_cert_hash|计数器|证书固定验证失败的TLS连接总数|
-|ssl.cipher.<cipher>|计数器|使用<cipher\>的TLS连接总数|
+|ssl.cipher.<cipher\>|计数器|使用<cipher\>的TLS连接总数|
 
 ## 监听管理器
 

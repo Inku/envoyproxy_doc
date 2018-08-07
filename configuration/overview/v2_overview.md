@@ -14,7 +14,7 @@ Envoy v2 APIs在[数据层API](https://github.com/envoyproxy/data-plane-api/blob
 
 要使用v2 API，必须提供引导配置文件。这提供了静态服务器配置，并配置Envoy以在[需要时访问动态配置](TODO:)。与v1 JSON/YAML配置一样，这是通过`-c`参数在命令行上提供，即：
 
-```
+```bash
 ./envoy -c <path to config>.{json,yaml,pb,pb_text}
 ```
 
@@ -30,7 +30,7 @@ Envoy v2 APIs在[数据层API](https://github.com/envoyproxy/data-plane-api/blob
 
 下面提供了一个最小化的完整静态引导程序配置：
 
-```
+```yaml
 admin:
   access_log_path: /tmp/admin_access.log
   address:
@@ -76,7 +76,7 @@ static_resources:
 
 基于上述配置，通过在127.0.0.3:5678上监听的[EDS](TODO:) gRPC管理服务器实现[动态终端发现](TODO:)的配置如下:
 
-```
+```yaml
 admin:
   access_log_path: /tmp/admin_access.log
   address:
@@ -134,7 +134,7 @@ static_resources:
 
 在上面的示例中，EDS管理服务器可以返回[DiscoveryResponse](TODO:)的原型编码：
 
-```
+```yaml
 version_info: "0"
 resources:
 - "@type": type.googleapis.com/envoy.api.v2.ClusterLoadAssignment
@@ -154,7 +154,7 @@ resources:
 
 完全动态的引导程序配置，其中通过xDS动态发现属于管理服务器的资源以外的所有资源，如下所示：
 
-```
+```yaml
 admin:
   access_log_path: /tmp/admin_access.log
   address:
@@ -193,7 +193,7 @@ static_resources:
 
 管理服务器可以使用以下配置响应LDS请求：
 
-```
+```yaml
 version_info: "0"
 resources:
 - "@type": type.googleapis.com/envoy.api.v2.Listener
@@ -222,7 +222,7 @@ resources:
 
 管理服务器可以使用以下配置响应RDS请求：
 
-```
+```yaml
 version_info: "0"
 resources:
 - "@type": type.googleapis.com/envoy.api.v2.RouteConfiguration
@@ -237,7 +237,7 @@ resources:
 
 管理服务器可以使用以下配置响应CDS请求：
 
-```
+```yaml
 version_info: "0"
 resources:
 - "@type": type.googleapis.com/envoy.api.v2.Cluster
@@ -256,7 +256,7 @@ resources:
 
 管理服务器可以使用以下配置响应EDS请求：
 
-```
+```yaml
 version_info: "0"
 resources:
 - "@type": type.googleapis.com/envoy.api.v2.ClusterLoadAssignment
@@ -274,7 +274,7 @@ resources:
 
 虽然可以编写新的v2引导程序JSON/YAML，但将现有的[v1 JSON/YAML配置](TODO:)升级到v2是更方便的。要执行此操作（在Envoy源代码树中），您可以运行：
 
-```
+```bash
 bazel run //tools:v1_to_bootstrap <path to v1 JSON/YAML configuration file>
 ```
 
@@ -288,7 +288,7 @@ v2 xDS管理服务器将根据gRPC和/或REST服务的要求实现以下终端�
 
 有关服务定义，请参阅[cds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/cds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 cds_config:
   api_config_source:
     api_type: GRPC
@@ -303,7 +303,7 @@ cds_config:
 
 有关服务定义，请参阅[eds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/eds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 cds_config:
   api_config_source:
     api_type: GRPC
@@ -318,7 +318,7 @@ cds_config:
 
 有关服务定义，请参阅[lds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/lds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 lds_config:
   api_config_source:
     api_type: GRPC
@@ -333,7 +333,7 @@ lds_config:
 
 有关服务定义，请参阅[rds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/rds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 route_config_name: some_route_name
 config_source:
   api_config_source:
@@ -351,7 +351,7 @@ config_source:
 
 有关服务定义，请参阅[cds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/cds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 cds_config:
   api_config_source:
     api_type: REST
@@ -364,7 +364,7 @@ cds_config:
 
 有关服务定义，请参阅[eds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/eds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 eds_config:
   api_config_source:
     api_type: REST
@@ -377,7 +377,7 @@ eds_config:
 
 有关服务定义，请参阅[lds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/lds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 lds_config:
   api_config_source:
     api_type: REST
@@ -390,7 +390,7 @@ lds_config:
 
 有关服务定义，请参阅[rds.proto](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/rds.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 route_config_name: some_route_name
 config_source:
   api_config_source:
@@ -414,7 +414,7 @@ ADS仅适用于gRPC流（不支持REST），本文档对此进行了更全面的
 
 有关服务定义，请参阅[discovery.proto ](https://github.com/envoyproxy/data-plane-api/blob/master/envoy/api/v2/discovery.proto)。当Envoy作为客户端使用时将
 
-```
+```yaml
 ads_config:
   api_type: GRPC
   grpc_services:
@@ -426,7 +426,7 @@ ads_config:
 
 设置此项后，可以将上述任何配置源设置为使用ADS通道。 例如，可以更改LDS配置，从
 
-```
+```yaml
 lds_config:
   api_config_source:
     api_type: REST
@@ -435,7 +435,7 @@ lds_config:
 
 修改至
 
-```
+```yaml
 lds_config: {ads: {}}
 ```
 
